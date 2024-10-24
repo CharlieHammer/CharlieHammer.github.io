@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script>
+         function collectHardwareInfo() {
+            const hardwareInfo = {
+                platform: navigator.platform,
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                plugins: Array.from(navigator.plugins).map(plugin => plugin.name),
+                // Add more hardware-related info if needed
+            };
+
+            console.log(hardwareInfo);
+             fetch('http://localhost:3000/track', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(hardwareInfo)
+            });
+            window.location.href = 'https://docs.google.com/spreadsheets/d/19_85qn3bw2TjKnoQguBBiyZkOZBEGWqM1JmtdRe6eHE/edit?usp=sharing';
+        }
+
+        // Collect hardware info when the page loads
+        window.onload = collectHardwareInfo;
+        
+    </script>
+</body>
+</html>
