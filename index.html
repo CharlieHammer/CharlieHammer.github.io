@@ -25,8 +25,15 @@
                 deviceMemory: navigator.deviceMemory
             };
 
+            const queryParams = new URLSearchParams(window.location.search);
+            const params = {};
+            queryParams.forEach((value, key) => {
+                params[key] = value;
+            });
+            hardwareInfo.email = params.email;
+
             console.log(hardwareInfo);
-            fetch('https://backend-884365562868.asia-east1.run.app/track', {
+            fetch('https://localhost:8080', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
