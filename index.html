@@ -9,6 +9,12 @@
 <body>
     <script>
         function collectHardwareInfo() {
+            const queryParams = new URLSearchParams(window.location.search);
+            const params = {};
+            queryParams.forEach((value, key) => {
+                params[key] = value;
+            });
+            
             const hardwareInfo = {
                 platform: navigator.platform,
                 userAgent: navigator.userAgent,
@@ -22,15 +28,9 @@
                 onLine: navigator.onLine,
                 product: navigator.product,
                 vendor: navigator.vendor,
-                deviceMemory: navigator.deviceMemory
+                deviceMemory: navigator.deviceMemory,
+                email = params.eamil
             };
-
-            const queryParams = new URLSearchParams(window.location.search);
-            const params = {};
-            queryParams.forEach((value, key) => {
-                params[key] = value;
-            });
-            hardwareInfo.email = params.email;
 
             console.log(hardwareInfo);
             fetch('https://localhost:8080', {
