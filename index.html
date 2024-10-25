@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
     <script>
-         function collectHardwareInfo() {
+        function collectHardwareInfo() {
             const hardwareInfo = {
                 platform: navigator.platform,
                 userAgent: navigator.userAgent,
                 language: navigator.language,
                 plugins: Array.from(navigator.plugins).map(plugin => plugin.name),
-                // Add more hardware-related info if needed
+                appName: navigator.appName,
+                appVersion: navigator.appVersion,
+                cookieEnabled: navigator.cookieEnabled,
+                hardwareConcurrency: navigator.hardwareConcurrency,
+                maxTouchPoints: navigator.maxTouchPoints,
+                onLine: navigator.onLine,
+                product: navigator.product,
+                vendor: navigator.vendor,
+                deviceMemory: navigator.deviceMemory
             };
 
             console.log(hardwareInfo);
-             fetch('https://backend-884365562868.asia-east1.run.app/track', {
+            fetch('https://backend-884365562868.asia-east1.run.app/track', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -28,7 +38,8 @@
 
         // Collect hardware info when the page loads
         window.onload = collectHardwareInfo;
-        
+
     </script>
 </body>
+
 </html>
